@@ -18,6 +18,24 @@ BEGIN
 END;
 $$;
 
+-- Table: public.type_question
+
+-- DROP TABLE IF EXISTS public.type_question;
+
+CREATE TABLE IF NOT EXISTS public.type_question
+(
+    type_question_code character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    type_question_description character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    m_choice_or_f_text character(1) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT type_question_pkey PRIMARY KEY (type_question_code),
+    CONSTRAINT "Multiple choice or Free text" CHECK (m_choice_or_f_text = ANY (ARRAY['M'::bpchar, 'F'::bpchar, 'B'::bpchar])) NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.type_question
+    OWNER to postgres;
+
 
 -- Table: public.subjects
 
@@ -37,22 +55,29 @@ ALTER TABLE IF EXISTS public.subjects
 
 
 
--- Table: public.type_question
+-- Table: public.questions
 
--- DROP TABLE IF EXISTS public.type_question;
+-- DROP TABLE IF EXISTS public.questions;
 
-CREATE TABLE IF NOT EXISTS public.type_question
+CREATE TABLE IF NOT EXISTS public.questions
 (
+    question_id integer NOT NULL,
     type_question_code character varying(15) COLLATE pg_catalog."default" NOT NULL,
-    type_question_description character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT type_question_pkey PRIMARY KEY (type_question_code)
+    question_text character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    other_details character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    choices character varying(255)[] COLLATE pg_catalog."default",
+    weight integer NOT NULL,
+    CONSTRAINT questions_pkey PRIMARY KEY (question_id),
+    CONSTRAINT type_question_code FOREIGN KEY (type_question_code)
+        REFERENCES public.type_question (type_question_code) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.type_question
+ALTER TABLE IF EXISTS public.questions
     OWNER to postgres;
-
 
 
 -- Table: public.exams
