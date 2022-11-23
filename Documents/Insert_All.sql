@@ -199,3 +199,116 @@ INSERT INTO student (student_id , first_name , middle_name , last_name , gender_
 (198, 'Rodrick', 'Eddy', 'Whiteson', 'M', '392 Hollow Ridge Place', 'ewhiteson5h@posterous.com', '1983962786', '7728150583', 'ipsum integer a nibh in quis justo maecenas rhoncus aliquam'),
 (199, 'Clerc', 'Hurleigh', 'Sivier', 'M', '66 Raven Street', 'hsivier5i@bizjournals.com', '4394831558', '3071828298', 'semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum'),
 (200, 'Granthem', 'Winnah', 'Jalland', 'F', '5055 Autumn Leaf Parkway', 'wjalland5j@google.cn', '5599761425', '7536830538', 'ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere');
+
+
+INSERT INTO type_question (type_question_code , type_question_description , m_choice_or_f_text) VALUES
+('TRUE_FALSE_QUEST','Pregunta de tipo verdadero o falso','M'),
+('FOUR_OPTIO_QUEST','Pregunta con cuatro opciones','M'),
+('FREE_TEXT_QUEST','Pregunta abierta','F'),
+('M_CHOICE_N_F_TXT','Pregunta de opcion multiple con justificacion','B');
+
+
+INSERT INTO subjects (subject_code , subject_name , subject_description) VALUES
+(1, 'topicos', 'morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices'),
+(2, 'english', 'lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus'),
+(3, 'comunicacion', 'suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl'),
+(4, 'administracion', 'vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat'),
+(5, 'laboratorio', 'turpis eget elit sodales scelerisque mauris sit amet eros suspendisse');
+
+
+INSERT INTO exams (exam_id , subject_code , exam_date , exam_name , exam_description) VALUES
+(1, 2, '2022-05-28 23:36:47', 'augue a', 'nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque'),
+(2, 3, '2022-05-21 04:53:42', 'sed vel enim sit', 'lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula'),
+(3, 4, '2022-02-22 16:34:33', 'ante nulla justo', 'turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis'),
+(4, 5, '2022-06-14 02:08:35', 'quis orci', 'ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla'),
+(5, 1, '2022-07-20 12:21:41', 'turpis donec posuere metus vitae', 'eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat');
+
+
+INSERT INTO questions (question_id , type_question_code , question_text , choices , weight) VALUES
+(1, 'FOUR_OPTIO_QUEST', '¿congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl?', ARRAY ['opcion1','opcion2','opcion3','opcion4'], 40),
+(2, 'M_CHOICE_N_F_TXT', '¿accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut?', ARRAY ['opcion1','opcion2','opcion3','opcion4'], 20),
+(3, 'FOUR_OPTIO_QUEST', '¿velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante?', ARRAY ['opcion1','opcion2','opcion3','opcion4'], 10),
+(4, 'M_CHOICE_N_F_TXT', '¿suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam?', ARRAY ['opcion1','opcion2','opcion3','opcion4'], 11),
+(5, 'TRUE_FALSE_QUEST', '¿nao exepto nie diesteco tal dum onei de atara mao se?',null, 30),
+(6, 'TRUE_FALSE_QUEST', '¿nem su teina ane yule sabei za rute?',null, 12),
+(7, 'FREE_TEXT_QUEST', '¿Como te llamas?', null, 5),
+(8, 'FREE_TEXT_QUEST', '¿Tienes perros?', null, 40);
+
+
+INSERT INTO questions_in_exams (exam_id , question_id) VALUES
+(4, 1),
+(3, 2),
+(1, 3),
+(4, 4),
+(1, 5),
+(2, 6),
+(1, 7),
+(5, 8),
+(2, 1),
+(4, 2),
+(3, 3),
+(1, 4),
+(5, 5),
+(1, 6),
+(2, 7),
+(3, 8);
+
+
+INSERT INTO student_answers (student_answer_id , exam_id , question_id , student_id , date_of_answer , comments , student_answer_text) VALUES
+(1, 4, 1, 1, '2022-12-22 10:14:07', 'nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem', 'opcion1'),
+(2, 3, 2, 1, '2022-11-23 03:10:44', 'amet consectetuer', 'opcion2'),
+(3, 4, 4, 1, '2022-07-12 02:22:34', 'viverra dapibus', 'opcion3'),
+(4, 4, 1, 2, '2022-12-05 21:10:36', 'sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at', 'opcion4'),
+(5, 1, 3, 2, '2022-10-18 03:45:12', 'consequat nulla nisl nunc nisl duis', 'opcion1'),
+(6, 3, 2, 2, '2022-05-19 03:37:14', 'elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum', 'opcion2'),
+(7, 1, 4, 3, '2022-07-03 04:29:38', 'lectus suspendisse potenti in eleifend quam a odio', 'opcion3'),
+(8, 1, 4, 4, '2022-08-11 04:25:13', 'morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet', 'opcion4'),
+(9, 3, 3, 1, '2022-02-28 21:02:06', 'iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis', 'opcion1'),
+(10, 1, 4, 5, '2022-11-26 03:13:09', 'morbi porttitor lorem id ligula suspendisse ornare consequat', 'opcion2'),
+(11, 3, 2, 3, '2022-03-06 06:02:24', 'nulla pede ullamcorper augue a suscipit nulla elit ac nulla', 'opcion3'),
+(12, 1, 3, 3, '2022-08-31 03:30:54', 'elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy', 'opcion4'),
+(13, 4, 2, 2, '2022-10-29 03:35:36', 'donec odio justo sollicitudin', 'opcion1'),
+(14, 1, 3, 4, '2022-10-19 09:34:26', 'hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat', 'opcion2'),
+(15, 4, 1, 3, '2022-11-17 19:01:48', 'diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere', 'opcion3'),
+(16, 2, 1, 3, '2022-12-31 14:44:07', 'convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris', 'opcion4'),
+(17, 1, 3, 5, '2023-12-01 21:07:30', 'ut odio cras mi pede malesuada in imperdiet et commodo', 'opcion1'),
+(18, 4, 1, 4, '2022-11-25 06:18:51', 'sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec', 'opcion2'),
+(19, 2, 1, 4, '2022-10-02 21:56:59', 'et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean', 'opcion3'),
+(20, 1, 4, 5, '2022-11-01 04:48:33', 'justo', 'opcion1'),
+(21, 2, 6, 1, '2022-10-01 04:48:33', 'qn sabe', 'False'),
+(22, 1, 5, 1, '2022-12-01 04:48:33', 'waw', 'True'),
+(23, 5, 5, 2, '2022-10-01 04:48:33', 'que', 'True'),
+(24, 1, 6, 2, '2022-10-01 04:48:33', 'no estoy seguro', 'False'),
+(25, 1, 5, 2, '2022-10-01 04:48:33', 'puede que si', 'False'),
+(26, 5, 5, 1, '2022-10-01 04:48:33', 'nose', 'True'),
+(27, 1, 6, 3, '2022-10-01 04:48:33', 'sabe', 'True'),
+(28, 2, 7, 1, '2022-10-01 04:48:33', 'sabe', 'Pablo'),
+(29, 3, 8, 2, '2022-10-01 04:48:33', 'sabe', 'Ernesto'),
+(30, 1, 7, 3, '2022-11-01 04:48:33', 'sabe', 'Joel'),
+(31, 5, 8, 4, '2022-11-01 04:48:33', 'sabe', 'Sebastian'),
+(32, 2, 7, 5, '2022-11-01 04:48:33', 'sabe', 'WAWAWWA');
+
+INSERT INTO valid_answers (valid_answer_id , question_id , valid_answer_text) VALUES
+(1, 1, 'opcion1'),
+(2, 2, 'opcion4'),
+(3, 3, 'opcion2'),
+(4, 4, 'opcion4'),
+(5, 5, 'True'),
+(6, 6, 'False'),
+(7, 7, 'Ernesto'),
+(8, 8, 'Aveces');
+
+
+INSERT INTO student_assesments (student_answer_id, valid_answer_id, satisfactory, feedback, percent_score) VALUES
+(1,1,True,'Correcto',100),
+(2,2,False,'Incorrecto',0),
+(3,4,False,'Incorrecto',0),
+(5,3,False,'Incorrecto',0),
+(6,2,False,'Incorrecto',0),
+(14,3,False,'Incorrecto',0),
+(15,1,False,'Incorrecto',0),
+(16,1,False,'Incorrecto',0),
+(4,1,False,'Incorrecto',0),
+(8,4,True,'Correcto',100),
+(22,5,True,'Correcto',100),
+(29,8,False,'Incorrecto',0);
